@@ -1,12 +1,25 @@
 const db = require('../data/dbConfig.js');
 
 module.exports = {
-    get
+    get,
+    getById
   };
+
+  /**
+   *   
+        insert,
+        update,
+        remove,
+   */
 
 async function get() {
     const sql = await db('accounts').toString();
 
     const accounts = await db('accounts');
     return accounts;
+}
+
+async function getById() {
+    const [account] = await db('post').where({ id });
+    return account;
 }
