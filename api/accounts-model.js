@@ -23,3 +23,9 @@ async function getById(id) {
     const [account] = await db('accounts').where({ id });
     return account;
 }
+
+async function insert(data) {
+    const [accountId] = await db('accounts').insert(data);
+    const account = await getById(accountId);
+    return account;
+}
