@@ -13,6 +13,14 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+router.get('/:id', async (req, res, next) => {
+    try {
+        res.status(200).json(req.account);
+    } catch(err) {
+        next(err);
+    }
+});
+
 // router.get('/:id', (req, res) => { });
 // router.post('/', (req, res) => { });
 // router.put('/:id', (req, res) => { });
