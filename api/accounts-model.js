@@ -9,7 +9,6 @@ module.exports = {
 
   /**
    *   
-        update,
         remove,
    */
 
@@ -33,5 +32,10 @@ async function insert(data) {
 
 async function update(id, changes) {
     const count = await db('accounts').where({id}).update(changes);
+    return count;
+}
+
+async function remove(id) {
+    const count = await db('accounts').where({id}).del();
     return count;
 }
