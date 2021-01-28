@@ -43,9 +43,15 @@ router.put('/:id', checkId, async (req, res, next) => {
     }
 });
 
-// router.get('/:id', (req, res) => { });
-// router.post('/', (req, res) => { });
-// router.put('/:id', (req, res) => { });
+router.delete('/:id', checkId, checkPayload, async(req, res, next) => {
+    try{
+        const data = await Accounts.remove();
+        res.json(data);
+    } catch(err) {
+        next(err);
+    }
+})
+
 // router.delete('/:id', (req, res) => { });
 
 async function checkId(req, res, next) {
