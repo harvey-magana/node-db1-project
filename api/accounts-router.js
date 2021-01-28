@@ -44,8 +44,9 @@ router.put('/:id', checkId, async (req, res, next) => {
 });
 
 router.delete('/:id', checkId, checkPayload, async(req, res, next) => {
+    const { id } = req.params;
     try{
-        const data = await Accounts.remove();
+        const data = await Accounts.remove(id);
         res.json(data);
     } catch(err) {
         next(err);

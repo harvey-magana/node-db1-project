@@ -4,13 +4,9 @@ module.exports = {
     get,
     getById, 
     insert,
-    update
+    update,
+    remove
   };
-
-  /**
-   *   
-        remove,
-   */
 
 async function get() {
     const sql = await db('accounts').toString();
