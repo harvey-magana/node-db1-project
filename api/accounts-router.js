@@ -32,6 +32,17 @@ router.post('/', checkPayload, async (req, res, next) => {
     }
 });
 
+router.put('/:id', checkId, async (req, res, next) => {
+    const { id } = req.params;
+    const changes = req.body;
+    try{
+        const data = await Accounts.update(id, changes);
+        res.json(data);
+    } catch(err) {
+        next(err);
+    }
+});
+
 // router.get('/:id', (req, res) => { });
 // router.post('/', (req, res) => { });
 // router.put('/:id', (req, res) => { });
