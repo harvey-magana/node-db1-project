@@ -19,7 +19,7 @@ async function get() {
     return accounts;
 }
 
-async function getById() {
-    const [account] = await db('post').where({ id });
+async function getById(id) {
+    const [account] = await db('accounts').where({ id });
     return account;
 }

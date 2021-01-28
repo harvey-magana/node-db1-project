@@ -15,7 +15,8 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
     try {
-        res.status(200).json(req.account);
+        const data = await Accounts.getById(req.params.id)
+        res.status(200).json(data);
     } catch(err) {
         next(err);
     }
