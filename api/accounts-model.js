@@ -7,3 +7,10 @@ module.exports = {
     update,
     remove,
   };
+
+async function get() {
+    const sql = await db('accounts').toString();
+
+    const accounts = await db('accounts');
+    return accounts;
+}
