@@ -18,4 +18,4 @@ router.get('/', async (req, res, next) => {
 // router.put('/:id', (req, res) => { });
 // router.delete('/:id', (req, res) => { });
 
-exports.module = router;
+module.exports = router;
