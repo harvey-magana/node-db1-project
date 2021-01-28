@@ -8,7 +8,6 @@ module.exports = {
 
   /**
    *   
-        insert,
         update,
         remove,
    */
@@ -29,4 +28,9 @@ async function insert(data) {
     const [accountId] = await db('accounts').insert(data);
     const account = await getById(accountId);
     return account;
+}
+
+async function update(id, changes) {
+    const count = await db('accounts').where({id}).update(changes);
+    return count;
 }
