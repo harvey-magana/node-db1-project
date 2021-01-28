@@ -22,6 +22,16 @@ router.get('/:id', async (req, res, next) => {
     }
 });
 
+router.post('/', async (req, res, next) => {
+    const body = req.body;
+    try {
+        const data = await Accounts.create(body);
+        res.json(data);
+    } catch(err) {
+        next(err);
+    }
+});
+
 // router.get('/:id', (req, res) => { });
 // router.post('/', (req, res) => { });
 // router.put('/:id', (req, res) => { });
