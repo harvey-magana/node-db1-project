@@ -37,4 +37,23 @@ router.post('/', async (req, res, next) => {
 // router.put('/:id', (req, res) => { });
 // router.delete('/:id', (req, res) => { });
 
+async function checkId(req, res, next) {
+    const { id } = req.params;
+    try{
+        const account = await Accounts.getById(id);
+        if(account) {
+            req.account = account;
+            next();
+        } else {
+            const err = new Error('invalid');
+            err.statusCode = 400;
+            next(err);
+        }
+    } catch(err) {
+        err.statusCode = 500;
+        err.message = 'Error retrieving an account';
+        next(err);
+    }
+}
+
 module.exports = router;
