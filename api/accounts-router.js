@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', checkId, async (req, res, next) => {
     try {
         const data = await Accounts.getById(req.params.id)
         res.status(200).json(data);
@@ -22,10 +22,10 @@ router.get('/:id', async (req, res, next) => {
     }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', checkPayload, async (req, res, next) => {
     const body = req.body;
     try {
-        const data = await Accounts.create(body);
+        const data = await Accounts.insert(body);
         res.json(data);
     } catch(err) {
         next(err);
@@ -53,6 +53,17 @@ async function checkId(req, res, next) {
         err.statusCode = 500;
         err.message = 'Error retrieving an account';
         next(err);
+    }
+}
+
+async function checkPayload(req, res, next) {
+    const body = req.body;
+    if(!body.name || !body.budget) {
+        const err = new Error('body must include a title and a budget.');
+        err.statusCode = 400;
+        next(err);
+    } else {
+        next();
     }
 }
 
