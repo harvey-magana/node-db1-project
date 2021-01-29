@@ -53,7 +53,7 @@ router.delete('/:id', checkId, checkPayload, async(req, res, next) => {
     }
 })
 
-// router.delete('/:id', (req, res) => { });
+// missing error handling middlware
 
 async function checkId(req, res, next) {
     const { id } = req.params;
